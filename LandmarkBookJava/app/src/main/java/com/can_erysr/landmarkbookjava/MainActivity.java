@@ -3,10 +3,13 @@ package com.can_erysr.landmarkbookjava;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.can_erysr.landmarkbookjava.databinding.ActivityMainBinding;
 
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         landmarkArrayList.add(collessium);
         landmarkArrayList.add(londonBridge);
 
+        /*
         //Adapter
          //ListView
 
@@ -48,7 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 landmarkArrayList.stream().map(landmark -> landmark.name).collect(Collectors.toList())
         );
         binding.listView.setAdapter(arrayAdapter);
-
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(MainActivity.this,landmarkArrayList.get(position).name, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,DetailsActivity.class);
+                intent.putExtra("landmark",landmarkArrayList.get(position));
+                startActivity(intent);
+            }
+        });
+*/
 
 
     }

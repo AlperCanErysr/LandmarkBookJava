@@ -1,6 +1,8 @@
 package com.can_erysr.landmarkbookjava;
 
-public class Landmark {
+import java.io.Serializable;
+
+public class Landmark implements Serializable {
 
     String name;
     String country;
