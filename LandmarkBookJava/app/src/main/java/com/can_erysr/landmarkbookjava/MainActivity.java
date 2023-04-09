@@ -1,6 +1,8 @@
 package com.can_erysr.landmarkbookjava;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Landmark> landmarkArrayList;
     private ActivityMainBinding binding;
+    //static Landmark chosenLandmark;
 
 
     @Override
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         landmarkArrayList.add(eiffel);
         landmarkArrayList.add(collessium);
         landmarkArrayList.add(londonBridge);
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LandmarkAdapter landmarkAdapter = new LandmarkAdapter(landmarkArrayList);
+        binding.recyclerView.setAdapter(landmarkAdapter);
 
         /*
         //Adapter

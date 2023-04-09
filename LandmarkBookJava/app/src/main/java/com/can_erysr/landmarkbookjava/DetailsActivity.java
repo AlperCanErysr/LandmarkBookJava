@@ -20,8 +20,10 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(view);
 
         Intent intent = getIntent();
+
         //Casting
         Landmark selectedLandmark = (Landmark) intent.getSerializableExtra("landmark");
+
 
         binding.nameText.setText(selectedLandmark.name);
         binding.countryText.setText(selectedLandmark.country);

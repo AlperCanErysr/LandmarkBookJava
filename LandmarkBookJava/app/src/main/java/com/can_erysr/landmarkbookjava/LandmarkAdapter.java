@@ -1,33 +1,62 @@
 package com.can_erysr.landmarkbookjava;
 
+
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.can_erysr.landmarkbookjava.databinding.RecyclerRowBinding;
+
+import java.util.ArrayList;
+
 public class LandmarkAdapter extends RecyclerView.Adapter<LandmarkAdapter.LandmarkHolder> {
+
+    ArrayList<Landmark> landmarkArrayList;
+
+    public LandmarkAdapter(ArrayList<Landmark> landmarkArrayList) {
+        this.landmarkArrayList = landmarkArrayList;
+    }
 
     @NonNull
     @Override
     public LandmarkHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        RecyclerRowBinding recyclerRowBinding = RecyclerRowBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        return new LandmarkHolder(recyclerRowBinding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LandmarkHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LandmarkHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.binding.recyclerViewTextView.setText(landmarkArrayList.get(position).name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(),DetailsActivity.class);
+                //chosenLandmark = landmarkArrayList.get(position);
+                intent.putExtra("landmark",landmarkArrayList.get(position));
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return landmarkArrayList.size();
     }
 
     public class LandmarkHolder extends RecyclerView.ViewHolder{
 
-        public LandmarkHolder(@NonNull View itemView) {
-            super(itemView);
+        private RecyclerRowBinding binding;
+
+        public LandmarkHolder(RecyclerRowBinding binding) {
+            super(binding.getRoot());
+            this.binding=binding;
         }
     }
 
